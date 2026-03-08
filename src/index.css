@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Space+Grotesk:wght@400;500;700&display=swap');
+@import 'tailwindcss';
+
+@theme inline {
+  --font-display: 'Fraunces', serif;
+  --font-sans: 'Space Grotesk', sans-serif;
+}
+
+:root {
+  color-scheme: light;
+  --page-bg: linear-gradient(160deg, #f8f1e7 0%, #f6e9d1 52%, #efdbba 100%);
+  --surface: rgb(255 252 246 / 0.84);
+  --surface-strong: rgb(255 248 238 / 0.92);
+  --border-color: rgb(103 76 49 / 0.14);
+  --tile-border: rgb(103 76 49 / 0.12);
+  --text-color: #2e241d;
+  --muted-color: #72604d;
+  --chip-bg: rgb(255 255 255 / 0.6);
+  --shadow-soft: 0 24px 60px rgb(113 80 50 / 0.16);
+  --tile-bg: linear-gradient(180deg, #fffdf8 0%, #faeedb 100%);
+  --tile-shadow: inset 0 -12px 24px rgb(216 157 43 / 0.12);
+  --tile-shadow-hover: inset 0 -12px 24px rgb(216 157 43 / 0.18), 0 14px 28px rgb(115 82 53 / 0.14);
+  --accent-soft: rgb(213 93 63 / 0.28);
+  --accent-strong: #d55d3f;
+  --accent-contrast: #fff8f2;
+  --x-color: #d55d3f;
+  --o-color: #1f7a78;
+  --draw-color: #c49121;
+  --orb-primary: rgb(241 185 104 / 0.52);
+  --orb-secondary: rgb(31 122 120 / 0.2);
+  --top-glow: rgb(255 255 255 / 0.18);
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --page-bg: linear-gradient(160deg, #091018 0%, #111b25 46%, #182736 100%);
+  --surface: rgb(17 25 35 / 0.82);
+  --surface-strong: rgb(23 34 47 / 0.92);
+  --border-color: rgb(150 179 202 / 0.14);
+  --tile-border: rgb(150 179 202 / 0.12);
+  --text-color: #edf3f8;
+  --muted-color: #9fb4c6;
+  --chip-bg: rgb(31 44 58 / 0.88);
+  --shadow-soft: 0 24px 60px rgb(3 9 15 / 0.45);
+  --tile-bg: linear-gradient(180deg, #202c3a 0%, #16202b 100%);
+  --tile-shadow: inset 0 -12px 24px rgb(7 14 24 / 0.52);
+  --tile-shadow-hover: inset 0 -12px 24px rgb(7 14 24 / 0.64), 0 14px 28px rgb(6 11 19 / 0.34);
+  --accent-soft: rgb(124 166 255 / 0.32);
+  --accent-strong: #7ca6ff;
+  --accent-contrast: #0a1320;
+  --x-color: #ff8f6b;
+  --o-color: #6ed8d1;
+  --draw-color: #f4c35b;
+  --orb-primary: rgb(124 166 255 / 0.2);
+  --orb-secondary: rgb(110 216 209 / 0.12);
+  --top-glow: rgb(124 166 255 / 0.08);
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--accent-soft);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+.panel-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.panel-sheen::after {
+  content: '';
+  position: absolute;
+  inset: auto -7% -45% auto;
+  width: 16rem;
+  height: 16rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgb(213 93 63 / 0.12), transparent 70%);
+  pointer-events: none;
+}
+
+html[data-theme='dark'] .panel-sheen::after {
+  background: radial-gradient(circle, rgb(124 166 255 / 0.14), transparent 70%);
+}
+
+.cell-mark {
+  animation: mark-enter 220ms ease;
+}
+
+.win-cell {
+  animation: winner-pulse 900ms ease-in-out infinite alternate;
+}
+
+.thinking-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--accent-strong);
+  animation: thinking-bounce 750ms ease-in-out infinite;
+}
+
+@keyframes mark-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes winner-pulse {
+  from {
+    box-shadow: 0 0 0 0 rgb(124 166 255 / 0);
+  }
+
+  to {
+    box-shadow: 0 0 0 6px rgb(124 166 255 / 0.14);
+  }
+}
+
+@keyframes thinking-bounce {
+  0%,
+  80%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+
+  40% {
+    transform: translateY(-0.35rem);
+    opacity: 1;
+  }
+}
